@@ -56,8 +56,10 @@ THIRD_PARTY_APPS = [
 LOCAL_APPS = [
     # custom users app
     'direct_mail.users.apps.UsersConfig',
-    'direct_mail.audience.apps.AudienceConfig',
+
     # Your stuff: custom apps go here
+    'direct_mail.audience.apps.AudienceConfig',
+    'direct_mail.services.delivery_letter.apps.DeliveryLetterConfig',
 ]
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps

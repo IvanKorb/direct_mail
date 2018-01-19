@@ -16,7 +16,10 @@ urlpatterns = [
     url(r'^users/', include('direct_mail.users.urls', namespace='users')),
     url(r'^accounts/', include('allauth.urls')),
 
+    url(r'^services/delivery_letter/', include('direct_mail.services.delivery_letter.urls', namespace='delivery_letter')),
+
     # Your stuff: custom urls includes go here
+
 
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
