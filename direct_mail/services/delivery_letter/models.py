@@ -11,3 +11,4 @@ class DeliveryType(models.Model):
 
 class Letter(models.Model):
     file = models.FileField()
+    delivery_type = models.ForeignKey(DeliveryType, default=1)
