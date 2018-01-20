@@ -29,6 +29,7 @@ class LetterFormView(FormView):
         return super().post(request, *args, **kwargs)
 
     def form_valid(self, form):
+        form.save()
         return super().form_valid(form)
 
     def form_invalid(self, form):
