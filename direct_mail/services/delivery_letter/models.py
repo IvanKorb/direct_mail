@@ -16,4 +16,5 @@ class Letter(models.Model):
     audience = models.ManyToManyField(Audience)
     customer = models.ForeignKey(User, default=1)
 
+    total_price = models.IntegerField(null=True, blank=True)
     date_created = models.DateTimeField(auto_now_add=True, null=True)
