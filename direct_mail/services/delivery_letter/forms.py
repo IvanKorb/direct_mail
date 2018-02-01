@@ -7,10 +7,16 @@ class LetterForm(forms.ModelForm):
         model = Letter
         exclude = ['total_price']
 
-    def save(self, commit=True):
+    def get_total_price(self):
+        """
+        :return: возвращает общую сумму заказа
+        """
         total_number = 0
         for audience in self.cleaned_data['audience']:
             total_number += audience.number
-        total_price = self.instance.delivery_type.price * total_number
-        self.instance.total_price = total_price
+        return self.instance.delivery_type.price * total_number
+
+
+    def save(self, commit=True):
+        self.instance.total_price = self.get_total_price()
         return super().save(commit=True)
