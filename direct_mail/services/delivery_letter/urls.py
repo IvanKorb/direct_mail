@@ -12,6 +12,9 @@ urlpatterns = [
         regex=r'^delivery/$',
         view=views.LetterFormView.as_view(),
         name='delivery'),
-
+    url(
+        regex =r'^only_delivery/$',
+        view=views.LetterOnlyDeliveryFormView.as_view(),
+        name='only_delivery')
 
 ]

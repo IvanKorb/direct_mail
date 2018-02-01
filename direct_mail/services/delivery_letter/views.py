@@ -1,11 +1,7 @@
-
-
-# Create your views here.
 from django.views.generic import TemplateView, FormView
 
 from .models import DeliveryType
-from .forms import LetterForm
-
+from .forms import LetterForm, LetterOnlyDeliveryForm
 
 
 class TypeListView(TemplateView):
@@ -15,24 +11,22 @@ class TypeListView(TemplateView):
         kwargs['delivery_type_list'] = DeliveryType.objects.all()
         return super().get_context_data(**kwargs)
 
-class LetterFormView(FormView):
+
+class LetterBaseFormView(FormView):
     template_name = 'delivery_letter/delivery.html'
-    form_class = LetterForm
     success_url = '/'
-
-    def post(self, request, *args, **kwargs):
-        """
-        вызывается при отправке формы, если в шаблоне (HTML) мы
-            указали, что method=post
-
-        """
-        return super().post(request, *args, **kwargs)
 
     def form_valid(self, form):
         form.save()
         return super().form_valid(form)
 
-    def form_invalid(self, form):
-        print(form.errors)
-        return super().form_invalid(form)
+
+class LetterFormView(LetterBaseFormView):
+    form_class = LetterForm
+
+
+class LetterOnlyDeliveryFormView(LetterBaseFormView):
+    form_class = LetterOnlyDeliveryForm
+
+
 
